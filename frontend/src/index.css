@@ -1,0 +1,347 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+/* ============================================================
+   SCROLLBAR STYLING (WebKit + Firefox)
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #475569 transparent;
+}
+
+/* ============================================================
+   PANEL SCROLL UTILITY
+   ============================================================ */
+.panel-scroll {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #475569 transparent;
+}
+
+.panel-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.panel-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.panel-scroll::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+
+.panel-scroll::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ============================================================
+   STICKY HEADER UTILITY
+   ============================================================ */
+.sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(12px);
+  background: rgba(15, 23, 42, 0.85);
+}
+
+/* ============================================================
+   TAB TRANSITION ANIMATIONS
+   ============================================================ */
+.tab-content {
+  animation: tabFadeIn 0.25s ease-out;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tab-slide-left {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================================
+   CARD AND INTERACTIVE ELEMENT EFFECTS
+   ============================================================ */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   GLASS MORPHISM PANEL
+   ============================================================ */
+.glass-panel {
+  background: rgba(30, 41, 59, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(51, 65, 85, 0.5);
+  border-radius: 16px;
+}
+
+.glass-panel-sm {
+  background: rgba(30, 41, 59, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(51, 65, 85, 0.4);
+  border-radius: 12px;
+}
+
+/* ============================================================
+   FLOATING CHAT WIDGET
+   ============================================================ */
+.chat-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+}
+
+.chat-window {
+  width: 400px;
+  max-width: calc(100vw - 32px);
+  height: 520px;
+  max-height: calc(100vh - 120px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(51, 65, 85, 0.5);
+  display: flex;
+  flex-direction: column;
+  background: #0f172a;
+  animation: chatSlideUp 0.3s ease-out;
+}
+
+@keyframes chatSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chat-fab {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: white;
+}
+
+.chat-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5);
+}
+
+.chat-fab.open {
+  transform: rotate(45deg);
+}
+
+/* ============================================================
+   LOADING ANIMATIONS
+   ============================================================ */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.loading-shimmer {
+  background: linear-gradient(90deg,
+    rgba(51, 65, 85, 0.3) 25%,
+    rgba(71, 85, 105, 0.5) 50%,
+    rgba(51, 65, 85, 0.3) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 8px;
+}
+
+@keyframes pulse-alert {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-alert {
+  animation: pulse-alert 2s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================================
+   GRADIENT TEXT
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   LEAFLET OVERRIDES FOR DARK THEME
+   ============================================================ */
+.leaflet-container {
+  background: #1a1a2e !important;
+  font-family: inherit;
+}
+
+.leaflet-tile-pane {
+  filter: brightness(0.8) contrast(1.1) saturate(0.8);
+}
+
+.leaflet-control-zoom a {
+  background-color: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-color: #334155 !important;
+  transition: background-color 0.15s ease;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #334155 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1e293b !important;
+  color: #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+  border: 1px solid #334155 !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}
+
+.leaflet-popup-tip {
+  background: #1e293b !important;
+  border: 1px solid #334155 !important;
+  box-shadow: none !important;
+}
+
+.leaflet-popup-close-button {
+  color: #94a3b8 !important;
+  font-size: 18px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #e2e8f0 !important;
+}
+
+/* ============================================================
+   RESPONSIVE HELPERS
+   ============================================================ */
+@media (max-width: 768px) {
+  .chat-window {
+    width: calc(100vw - 16px);
+    height: calc(100vh - 80px);
+    bottom: 8px;
+    right: 8px;
+    border-radius: 16px;
+  }
+
+  .chat-widget {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .glass-panel {
+    border-radius: 12px;
+  }
+}
+
+/* ============================================================
+   TRANSITION UTILITIES
+   ============================================================ */
+.transition-smooth {
+  transition: all 0.2s ease;
+}
+
+button, a, input, select {
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
